@@ -1,0 +1,23 @@
+<h2>LOGIN FORM</h2>
+<p class="my-0" *ngIf="errorMsg">mail or password incorrect</p>
+<form class="my-5" [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+
+    <label for="">email</label>
+    <input type="text" class="form-control my-2" formControlName="email">
+    <div class="alert alert-danger" *ngIf="loginForm.get('email')?.errors &&loginForm.get('email')?.touched">
+        <p class="my-0" *ngIf="loginForm.get('email')?.getError('required')">name is required</p>
+        <p class="my-0" *ngIf="loginForm.get('email')?.getError('email')">email not valid</p>
+
+
+    </div>
+
+    <label for="">password</label>
+    <input type="password" class="form-control my-2" formControlName="password">
+    <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors &&loginForm.get('password')?.touched">
+        <p class="my-0" *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
+    </div>
+
+
+    <button class="btn btn-info">Login</button>
+
+</form>

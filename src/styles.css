@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+body {
+    background-color: #f0f3f2;
+    color: black;
+    font-family: 'Montserrat Alternates', sans-serif;
+    background-image: url(assets/light-patten.svg);
+}
+
+nav {
+    background-color: #f0f3f2;
+}
+
+.nav-link,
+.navbar-brand {
+    color: black;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+    color: black;
+}

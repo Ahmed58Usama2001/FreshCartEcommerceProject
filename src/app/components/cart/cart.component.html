@@ -1,0 +1,53 @@
+<div class="box d-flex justify-content-between align-items-center py-2">
+    <h2 class="my-4">Number of Products: <span class="text-danger">{{cartDetail.numOfCartItems}}</span></h2>
+
+    <button class="btn btn-success " style="background-color: #0aad0a;" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Pay</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Shipping Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="shippingForm" (ngSubmit)="submitForm(shippingForm)">
+                    <input type="text" class="form-control my-2" formControlName="details" placeholder="details">
+                    <input type="text" class="form-control my-2" formControlName="phone" placeholder="phone">
+                    <input type="text" class="form-control my-2" formControlName="city" placeholder="City">
+                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary m-2">Save changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3  my-3" *ngFor="let item of cartDetail.data?.products">
+        <div class=" p-2">
+            <img [src]="item.product?.imageCover" class="w-100" alt="">
+            <p class="my-2 fw-bold fs-5" style="color: #0aad0a;">{{item?.price}} EGP</p>
+            <div class="box d-flex justify-content-between align-items-center py-2">
+                <p>{{item.product?.title}}</p>
+                <p (click)="removeItemFun(item.product?._id)"><i class="fas fa-trash text-danger fa-lg"></i></p>
+            </div>
+            <div class="box d-flex justify-content-between align-items-center">
+                <p class="text-info fw-bold fs-5">count: {{item.count}}</p>
+                <select (change)="updataCountFun($event,item.product?._id)">
+                    <option value="select">select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <p *ngIf="quantityMsg">{{quantityMsg}}</p>
+            </div>
+        </div>
+    </div>
+    <h2 class="my-4">Total price <span class="text-danger">{{cartDetail.data?.totalCartPrice }}EGP</span></h2>
+</div>

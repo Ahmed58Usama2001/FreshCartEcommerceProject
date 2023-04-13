@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3  my-3 d-flex flex-column" *ngFor=" let product of products">
+            <img [src]="product.imageCover" class="w-100" alt="">
+            <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <p>{{product.title}}</p>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger fs-2 fw-bold">{{product.price}} EGP</span>
+                    <span class="fw-bold fs-3"><i class="fa-solid fa-star text-warning "></i>
+                        {{product.ratingsAverage}}</span>
+                </div>
+                <button class="btn text-white fw-bolder my-3 form-control align-self-end"
+                    style="background-color: #0aad0a;" [routerLink]="['/products',product._id]">View product</button>
+            </div>
+        </div>
+    </div>
+</div>

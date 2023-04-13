@@ -1,0 +1,42 @@
+<owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let category of allCategories">
+        <img [src]="category.image" class="w-100 rounded-circle " alt="" (click)="getSubCat(category._id)">
+        <p class="text-center my-3 fs-6 text-muted">{{category.name}}</p>
+    </ng-template>
+
+</owl-carousel-o>
+
+
+<i class="fas fa-spinner fa-spin fa-5x" style="color: #0aad0a;" *ngIf="isLoading"></i>
+
+<div class="row my-5" *ngIf="allSubCategories.length;else nuSubcategory">
+    <div class="col-md-4 p-3" *ngFor="let subCategory of allSubCategories">
+        <p class=" fw-bold fs-3" style="color: #0aad0a;" (click)="getProducts(subCategory._id)">{{subCategory.name}}</p>
+    </div>
+</div>
+
+<ng-template #nuSubcategory>
+    <p class="fw-bold text-danger fs-3">{{emptyCatMSG}}</p>
+</ng-template>
+
+<div class="row" *ngIf="products.length;else noProducts">
+    <div class="col-md-3  my-3 d-flex flex-column" *ngFor="let product of products">
+        <img [src]="product.imageCover" class="w-100" alt="">
+        <div class="flex-grow-1 d-flex flex-column justify-content-between">
+            <p>{{product.title}}</p>
+            <div class="d-flex justify-content-between">
+                <span class="text-danger fs-3 fw-bold">{{product.price}} EGP</span>
+                <span class="fw-bold fs-3"><i class="fa-solid fa-star text-warning "></i>
+                    {{product.ratingsAverage}}</span>
+            </div>
+            <p>{{product.description.split(' ').slice(0,5).join(' ')}}</p>
+
+            <button class="btn text-white fw-bolder my-3 form-control" style="background-color: #0aad0a;"
+                [routerLink]="['/products',product._id]">View product</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProducts>
+    <p class="fw-bold text-danger fs-3">{{emptyMSG}}</p>
+</ng-template>
